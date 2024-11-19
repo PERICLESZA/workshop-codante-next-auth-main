@@ -1,4 +1,4 @@
-// 'user server';
+ 'use server';
 
 import db from '@/lib/db'
 import { hashSync } from 'bcrypt-ts';
@@ -17,7 +17,9 @@ export default async function register(formData: FormData){
     }
 
     const userExists = await db.user.findUnique({
-        where:{email},
+        where:{
+            email: email
+        },
     })
 
     if (userExists){
